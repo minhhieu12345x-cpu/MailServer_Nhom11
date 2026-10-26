@@ -245,4 +245,4 @@ public class MailClientUI extends JFrame {
             new MailClientUI().setVisible(true);
         });
     }
-}
+}// update code 
