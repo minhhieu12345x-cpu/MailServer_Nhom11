@@ -1,13 +1,15 @@
 /*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to edit this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package client;
+
 import com.mycompany.nhom11_doanmonhoc.model.Email;
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
 import java.net.Socket;
+
 /**
  *
  * @author dell
@@ -17,6 +19,11 @@ public class MailClientUI extends JFrame {
     private JTextArea txtContent, txtLog;
     private JButton btnSend, btnViewInbox, btnViewSpam;
 
+    // =========================================================================
+    // CẤU HÌNH IP SERVER TẠI ĐÂY:
+    // - Khi test 1 máy (Local): để là "127.0.0.1"
+    // - Khi test 2 máy (Wi-Fi điện thoại): đổi thành IPv4 của máy Server (VD: "192.168.43.15")
+    // =========================================================================
     private static final String SERVER_HOST = "127.0.0.1";
     private static final int SERVER_PORT = 8025;
 
@@ -31,7 +38,7 @@ public class MailClientUI extends JFrame {
     private void initUI() {
         setLayout(new BorderLayout(10, 10));
 
-        // --- Panel Cấu hình kết nối & Soạn thư ---
+        // --- Panel Soạn thư ---
         JPanel panelTop = new JPanel(new GridLayout(6, 2, 5, 5));
         panelTop.setBorder(BorderFactory.createTitledBorder("Soạn Thư Điện Tử (SMTP Client)"));
 
@@ -110,8 +117,8 @@ public class MailClientUI extends JFrame {
             JOptionPane.showMessageDialog(this, serverResponse, "Kết quả lọc Spam từ Server", JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception ex) {
-            txtLog.append("[LỖI KẾT NỐI] Không thể kết nối tới Server. Hãy đảm bảo MailServer đã chạy!\n");
-            JOptionPane.showMessageDialog(this, "Không thể kết nối tới Server tại cổng " + SERVER_PORT, "Lỗi", JOptionPane.ERROR_MESSAGE);
+            txtLog.append("[LỖI KẾT NỐI] Không thể kết nối tới Server tại " + SERVER_HOST + ":" + SERVER_PORT + "\n");
+            JOptionPane.showMessageDialog(this, "Không thể kết nối tới Server tại " + SERVER_HOST, "Lỗi", JOptionPane.ERROR_MESSAGE);
             ex.printStackTrace();
         }
     }
@@ -245,4 +252,4 @@ public class MailClientUI extends JFrame {
             new MailClientUI().setVisible(true);
         });
     }
-}// update code 
+}
